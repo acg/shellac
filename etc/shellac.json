@@ -1,0 +1,22 @@
+{
+  "actions": [
+    {
+      "name": "mail_page",
+      "title": "Mail this Page: tmux + mutt",
+      "command": "scripts/mail_tmux_mutt \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
+      "contexts": ["page"]
+    },
+    {
+      "name": "mail_link",
+      "title": "Mail this Link: tmux + mutt",
+      "command": "scripts/mail_tmux_mutt \"$SHELLAC_INFO_LINKURL\" \"$SHELLAC_TAB_TITLE\"",
+      "contexts": ["link"]
+    },
+    {
+      "name": "env",
+      "title": "Debugging: dump environment",
+      "command": "scripts/dump_env",
+      "contexts": ["all"]
+    }
+  ]
+}
