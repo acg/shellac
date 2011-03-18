@@ -1,0 +1,3 @@
+#!/bin/sh
+cd ../..
+exec bin/webapp.py 8783
