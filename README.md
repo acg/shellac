@@ -12,11 +12,11 @@ Some things Shellac might be used for:
 * Bookmark the current page with a command line bookmarking program.
 * Highlight snippets of text and send them to a custom note-taking program.
 
-Here's Shellac in action:
+Shellac is alpha and targeted at developers.
+
+## Screenshot ##
 
 ![Shellac in action](./shellac/raw/master/screenshots/mail-link.png)
-
-Shellac is alpha and targeted at developers.
 
 ## Installation and Usage ##
 
