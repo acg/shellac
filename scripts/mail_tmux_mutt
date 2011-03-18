@@ -1,6 +1,7 @@
 #!/bin/sh
 
-MAILDIR="$HOME/Maildir/templates"
+MAILDIR="$HOME/Maildir"
+MAILFOLDER="templates"
 SIGNATURE="$HOME/.signature"
 IDENTITY="$HOME/.identity"
 
@@ -9,7 +10,7 @@ title="$2"
 signature=`cat "$SIGNATURE"`
 identity=`cat "$IDENTITY"`
 
-cat > "$MAILDIR/new/template.`date +%s`" <<EOM
+cat > "$MAILDIR/$MAILFOLDER/new/template.`date +%s`" <<EOM
 From: $identity
 To:
 Bcc: $identity
@@ -17,13 +18,13 @@ Subject: $title
 
 $link
 
---
+-- 
 $signature
 
 EOM
 
 mutt_window=`tmux list-windows | grep mutt | head -1 | cut -f1 -d:`
-tmux send-keys -t "$mutt_window" "c=templates" Enter ":exec resend-message" Enter
+tmux send-keys -t "$mutt_window" "c=$MAILFOLDER" Enter ":exec resend-message" Enter
 
 exit 0
 
