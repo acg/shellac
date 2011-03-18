@@ -20,7 +20,7 @@ Shellac is alpha and targeted at developers.
 
 ## Installation and Usage ##
 
-To run the Shellac web app server (requires Python 2.5), do this in a terminal:
+To run the Shellac web app server (requires Python 2.5 and [web.py](http://webpy.org/)), do this in a terminal:
 
     cd svc/shellac
     ./run
