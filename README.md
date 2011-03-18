@@ -20,7 +20,12 @@ Shellac is alpha and targeted at developers.
 
 ## Installation and Usage ##
 
-To run the Shellac web app server (requires Python 2.5 and [web.py](http://webpy.org/)), do this in a terminal:
+Requirements:
+
+* [Python](http://python.org/) (&gt;= 2.5)
+* [web.py](http://webpy.org/)
+
+To run the Shellac web app server, do this in a terminal:
 
     cd svc/shellac
     ./run
@@ -38,7 +43,24 @@ If you right click anywhere on a web page, on a link, or on selected text, you s
 
 ## Writing Your Own Shell Command Actions ##
 
-Edit `etc/shellac.json` and add your custom action. The commands are executed under `/bin/sh -c`.
+Edit `etc/shellac.json` and add your custom action. The commands are executed under `/bin/sh -c`. Here's an example:
+
+    {
+      "actions": [
+        {
+          "name": "mail_page",
+          "title": "Mail this Page: tmux + mutt",
+          "command": "scripts/mail_tmux_mutt \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
+          "contexts": ["page"]
+        },
+        {
+          "name": "mail_link",
+          "title": "Mail this Link: tmux + mutt",
+          "command": "scripts/mail_tmux_mutt \"$SHELLAC_INFO_LINKURL\" \"$SHELLAC_TAB_TITLE\"",
+          "contexts": ["link"]
+        }
+      ]
+    }
 
 Commands are passed information about the browser context via `SHELLAC_*` environmental variables. The `$SHELLAC_ACTION` variable always specifies the name of the action that was selected. Other variables come from the Chrome browser context. In particular, take a look at:
 
@@ -66,7 +88,7 @@ Shellac comes with a "Debugging: dump environment" action. You should see some o
 
 ## Security ##
 
-The Shellac web app listens on a localhost port, by default 8783. The set of available shell command actions are defined by the user; no extra arguments are appended to the shell commands. Data is passed via `SHELLAC_*` environmental variables.
+The Shellac web app listens on a localhost port, by default 8783. The set of available shell command actions are defined on the server side; no extra positional arguments are appended to the shell commands. Data is passed via `SHELLAC_*` environmental variables. If you pass variables as positional arguments to a shell command, be sure to use shell argument quoting.
 
-The current Chrome permissions model allows cross-**port** scripting requests: the Shellac javascript can send requests to any port on `127.0.0.1`. I didn't see any way to restrict this or I would have. If you need to convince yourself Shellac is well-behaved in this respect (it is!), the code is opensource and small...you know what to do...
+The current Chrome extension permissions model allows cross-**port** scripting requests: the Shellac javascript can send requests to any port on `127.0.0.1`. I didn't see any way to restrict this or I would have. If you need to convince yourself Shellac is well-behaved in this respect (it is!), the code is opensource and small...you know what to do...
 
