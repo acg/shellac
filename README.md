@@ -1,8 +1,6 @@
 # Shellac - extend Chrome with unix shell commands #
 
-![icon](extension/icon-64x64.png)
-
-Shellac is an extension for the [Google Chrome web browser](http://www.google.com/chrome).
+![icon](./raw/master/extension/icon-64x64.png) Shellac is an extension for the [Google Chrome web browser](http://www.google.com/chrome).
 
 It lets you add actions to the browser context menu that invoke shell commands that you define. The commands are passed information about the current page, like its url, its title, the currently selected block of text, etc.
 
