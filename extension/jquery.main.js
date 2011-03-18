@@ -45,6 +45,7 @@ function init_popup()
     dataType: 'json',
     success: function(config) {
       $('#status').html('running');
+      $('#status').addClass('status-okay');
       $.each( config.actions, function(i,action) {
         var li = $('<li></li>');
         li.html(action.title)
@@ -52,7 +53,11 @@ function init_popup()
       });
     },
     error: function(data) {
+      $('#status').addClass('status-error');
       $('#status').html('error');
+    },
+    complete: function(data) {
+      $('#status').removeClass('status-unknown');
     }
   });
 }

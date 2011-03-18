@@ -13,6 +13,22 @@ body {
   margin-right:10px;
 }
 
+#status {
+  font-weight: bold;
+}
+
+.status-unknown {
+  color: #ffd300;
+}
+
+.status-okay {
+  color: #00aa00;
+}
+
+.status-error {
+  color: #ff0000;
+}
+
 </style>
 
 <script type="text/javascript" src="jquery.min.js"></script>
@@ -23,9 +39,9 @@ body {
 <p>Check out the <a href="https://github.com/acg/shellac">documentation</a> for info on adding your own commands. Shellac is <a href="https://github.com/acg/shellac">open source</a>. Patches welcome!</p>
 
 <h2>Status</h2>
-<p>Local server at <a href="" id="server"></a> : <span id="status"></span></p>
+<p>Local server at <a href="" id="server"></a> : <span id="status" class="status-unknown">unknown</span></p>
 
-<h2>Shell Command Actions</h2>
+<h2>Registered Shell Commands</h2>
 <ul id="actions">
 </ul>
 
