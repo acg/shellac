@@ -14,9 +14,11 @@ Some things Shellac might be used for:
 
 Shellac is alpha and targeted at developers.
 
-## Screenshot ##
+## Screenshots ##
 
-![Shellac in action](./shellac/raw/master/screenshots/mail-link.png)
+![Shellac extension page](./shellac/raw/master/screenshots/extension-popup.png)
+
+![Shellac context menu](./shellac/raw/master/screenshots/mail-link.png)
 
 ## Installation and Usage ##
 
