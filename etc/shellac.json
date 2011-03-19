@@ -1,6 +1,12 @@
 {
   "actions": [
     {
+      "name": "edit_page",
+      "title": "Edit the source to this page",
+      "command": "scripts/edit \"$SHELLAC_TAB_URL\"",
+      "contexts": ["page"]
+    },
+    {
       "name": "mail_page_tmux_mutt",
       "title": "Mail this Page with tmux + mutt",
       "command": "scripts/mail_tmux_mutt \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",

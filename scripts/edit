@@ -1,0 +1,13 @@
+#!/bin/sh
+
+link="$1"
+title="$2"
+
+filename=`basename "$link" | sed -e 's/#.*$//' | tr -d -c 'a-zA-Z_+., -'`
+echo "filename = $filename" 1>&2
+tempdir=`mktemp -d`
+tempfile="$tempdir/$filename"
+wget -O "$tempfile" "$link"
+exec $EDITOR "$tempfile"
+# TODO rmdir tempdir
+
