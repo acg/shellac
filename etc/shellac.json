@@ -1,15 +1,27 @@
 {
   "actions": [
     {
-      "name": "mail_page",
+      "name": "mail_page_tmux_mutt",
       "title": "Mail this Page: tmux + mutt",
       "command": "scripts/mail_tmux_mutt \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
       "contexts": ["page"]
     },
     {
-      "name": "mail_link",
+      "name": "mail_page_thunderbird",
+      "title": "Mail this Page: thunderbird",
+      "command": "scripts/mail_thunderbird \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
+      "contexts": ["page"]
+    },
+    {
+      "name": "mail_link_tmux_mutt",
       "title": "Mail this Link: tmux + mutt",
       "command": "scripts/mail_tmux_mutt \"$SHELLAC_INFO_LINKURL\" \"$SHELLAC_TAB_TITLE\"",
+      "contexts": ["link"]
+    },
+    {
+      "name": "mail_link_thunderbird",
+      "title": "Mail this Link: thunderbird",
+      "command": "scripts/mail_thunderbird \"$SHELLAC_INFO_LINKURL\" \"$SHELLAC_TAB_TITLE\"",
       "contexts": ["link"]
     },
     {

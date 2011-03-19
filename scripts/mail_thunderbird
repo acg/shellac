@@ -1,0 +1,7 @@
+#!/bin/sh
+
+link="$1"
+title="$2"
+
+exec thunderbird -compose subject="$title",body="$link"
+
