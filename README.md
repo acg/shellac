@@ -9,6 +9,7 @@ With Shellac you can add actions to the browser context menu that invoke shell c
 Some things Shellac might be used for:
 
 * Quickly email a link to the current page, a la Safari for the iPhone.
+* Open the current page's source in your editor.
 * Bookmark the current page with a command line bookmarking program.
 * Highlight snippets of text and send them to a custom note-taking program.
 
@@ -16,13 +17,17 @@ Shellac is alpha and targeted at developers.
 
 ## Screenshots ##
 
-****************
+The extension's popup shows status and registered commands:
 
 ![Shellac extension page](./shellac/raw/master/screenshots/extension-popup.png)
 
-****************
+The context menu for a link:
 
-![Shellac context menu](./shellac/raw/master/screenshots/mail-link.png)
+![Shellac link context menu](./shellac/raw/master/screenshots/mail-link.png)
+
+The context menu for a page:
+
+![Shellac page context menu](./shellac/raw/master/screenshots/page-menu.png)
 
 ## Installation and Usage ##
 
@@ -45,7 +50,7 @@ To install the Chrome extension:
 
 You should see a new icon appear to the right of the address bar. Click it to get some general info.
 
-If you right click anywhere on a web page, on a link, or on selected text, you should see "Shellac" in the context menu. (Note that for good reason, this doesn't work on `chrome://*` extensions pages.)
+If you right click anywhere on a web page, on a link, or on selected text, you should see "Shellac" in the context menu. (Note that for security reasons, extensions can't modify the context menu on `chrome://*` or `file://*` pages.)
 
 ## Writing Your Own Shell Command Actions ##
 
@@ -54,19 +59,30 @@ Edit `etc/shellac.json` and add your custom action. The commands are executed un
     {
       "actions": [
         {
-          "name": "mail_page",
-          "title": "Mail this Page: tmux + mutt",
-          "command": "scripts/mail_tmux_mutt \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
+          "name": "mail_page_thunderbird",
+          "title": "Mail this Page with thunderbird",
+          "command": "scripts/mail_thunderbird \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
           "contexts": ["page"]
         },
         {
-          "name": "mail_link",
-          "title": "Mail this Link: tmux + mutt",
-          "command": "scripts/mail_tmux_mutt \"$SHELLAC_INFO_LINKURL\" \"$SHELLAC_TAB_TITLE\"",
+          "name": "mail_link_thunderbird",
+          "title": "Mail this Link with thunderbird",
+          "command": "scripts/mail_thunderbird \"$SHELLAC_INFO_LINKURL\" \"$SHELLAC_TAB_TITLE\"",
           "contexts": ["link"]
-        }
+        },
       ]
     }
+
+The `mail_thunderbird` script looks like this:
+
+    #!/bin/sh
+
+    link="$1"
+    title="$2"
+
+    exec thunderbird -compose subject="$title",body="$link"
+
+After modifying `etc/shellac.json`, reload the Shellac extension on the `chrome://extensions` page to rebuild the browser context menu. I hope to find some way around this step in the future.
 
 Commands are passed information about the browser context via `SHELLAC_*` environmental variables. The `$SHELLAC_ACTION` variable always specifies the name of the action that was selected. Other variables come from the Chrome browser context. In particular, take a look at:
 
