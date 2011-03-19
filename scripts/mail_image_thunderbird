@@ -1,0 +1,13 @@
+#!/bin/sh
+
+link="$1"
+title="$2"
+
+filename=`basename "$link" | sed -e 's/#.*$//' | tr -d -c 'a-zA-Z_+., -'`
+echo "filename = $filename" 1>&2
+tempdir=`mktemp -d`
+attachment="$tempdir/$filename"
+wget -O "$attachment" "$link"
+exec thunderbird -compose subject="$title",body="$link",attachment="file://$attachment"
+# TODO rmdir tempdir
+

@@ -2,27 +2,33 @@
   "actions": [
     {
       "name": "mail_page_tmux_mutt",
-      "title": "Mail this Page: tmux + mutt",
+      "title": "Mail this Page with tmux + mutt",
       "command": "scripts/mail_tmux_mutt \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
       "contexts": ["page"]
     },
     {
       "name": "mail_page_thunderbird",
-      "title": "Mail this Page: thunderbird",
+      "title": "Mail this Page with thunderbird",
       "command": "scripts/mail_thunderbird \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
       "contexts": ["page"]
     },
     {
       "name": "mail_link_tmux_mutt",
-      "title": "Mail this Link: tmux + mutt",
+      "title": "Mail this Link with tmux + mutt",
       "command": "scripts/mail_tmux_mutt \"$SHELLAC_INFO_LINKURL\" \"$SHELLAC_TAB_TITLE\"",
       "contexts": ["link"]
     },
     {
       "name": "mail_link_thunderbird",
-      "title": "Mail this Link: thunderbird",
+      "title": "Mail this Link with thunderbird",
       "command": "scripts/mail_thunderbird \"$SHELLAC_INFO_LINKURL\" \"$SHELLAC_TAB_TITLE\"",
       "contexts": ["link"]
+    },
+    {
+      "name": "mail_image_thunderbird",
+      "title": "Mail this Image with thunderbird",
+      "command": "scripts/mail_image_thunderbird \"$SHELLAC_INFO_SRCURL\" \"$SHELLAC_TAB_TITLE\"",
+      "contexts": ["image"]
     },
     {
       "name": "env",
