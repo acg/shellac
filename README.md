@@ -22,15 +22,15 @@ Shellac is alpha and targeted at developers.
 
 ## Screenshots ##
 
-The extension's popup shows status and registered commands:
+### The popup shows status and registered commands ###
 
 ![Shellac extension page](./shellac/raw/master/screenshots/extension-popup.png)
 
-The context menu for a link:
+### The link context menu ###
 
 ![Shellac link context menu](./shellac/raw/master/screenshots/mail-link.png)
 
-The context menu for a page:
+### The page context menu ###
 
 ![Shellac page context menu](./shellac/raw/master/screenshots/page-menu.png)
 
