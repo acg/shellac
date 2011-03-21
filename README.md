@@ -73,6 +73,8 @@ Edit `etc/shellac.json` and add your custom action. The commands are executed un
       ]
     }
 
+The `contexts` key determines whether or not the menu item should appear when you right click certain types of elements. Legal values are: 'all', 'page', 'selection', 'link', 'editable', 'image', 'video', and 'audio'.
+
 The `mail_thunderbird` script looks like this:
 
     #!/bin/sh
