@@ -31,15 +31,21 @@
       "contexts": ["page"]
     },
     {
-      "name": "mail_link_tmux_mutt",
-      "title": "Mail this Link with tmux + mutt",
-      "command": "scripts/mail_tmux_mutt \"$SHELLAC_INFO_LINKURL\" \"$SHELLAC_TAB_TITLE\"",
+      "name": "mail_link_gnome",
+      "title": "Mail this Link with Gnome Email App",
+      "command": "scripts/mail_gnome \"$SHELLAC_INFO_URL\" \"$SHELLAC_TAB_TITLE\"",
       "contexts": ["link"]
     },
     {
       "name": "mail_link_thunderbird",
       "title": "Mail this Link with thunderbird",
       "command": "scripts/mail_thunderbird \"$SHELLAC_INFO_LINKURL\" \"$SHELLAC_TAB_TITLE\"",
+      "contexts": ["link"]
+    },
+    {
+      "name": "mail_link_tmux_mutt",
+      "title": "Mail this Link with tmux + mutt",
+      "command": "scripts/mail_tmux_mutt \"$SHELLAC_INFO_LINKURL\" \"$SHELLAC_TAB_TITLE\"",
       "contexts": ["link"]
     },
     {
