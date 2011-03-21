@@ -7,15 +7,21 @@
       "contexts": ["page"]
     },
     {
-      "name": "mail_page_tmux_mutt",
-      "title": "Mail this Page with tmux + mutt",
-      "command": "scripts/mail_tmux_mutt \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
+      "name": "mail_page_gnome",
+      "title": "Mail this Page with Gnome Email App",
+      "command": "scripts/mail_gnome \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
       "contexts": ["page"]
     },
     {
       "name": "mail_page_thunderbird",
       "title": "Mail this Page with thunderbird",
       "command": "scripts/mail_thunderbird \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
+      "contexts": ["page"]
+    },
+    {
+      "name": "mail_page_tmux_mutt",
+      "title": "Mail this Page with tmux + mutt",
+      "command": "scripts/mail_tmux_mutt \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
       "contexts": ["page"]
     },
     {
