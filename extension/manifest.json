@@ -1,6 +1,6 @@
 {
   "name": "Shellac",
-  "version": "0.1",
+  "version": "0.2",
   "description": "Extend Chrome with unix shell commands.",
   "background_page": "background.html",
   "browser_action": {
