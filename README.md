@@ -82,7 +82,7 @@ The `mail_thunderbird` script looks like this:
 
     exec thunderbird -compose subject="$title",body="$link"
 
-After modifying `etc/shellac.json`, reload the Shellac extension on the `chrome://extensions` page to rebuild the browser context menu. I hope to find some way around this step in the future.
+If you modify `etc/shellac.json`, choose the `Refresh This List of Commands` item from the context menu, and you'll see your changes the next time you bring up the context menu. I hope the Chrome extension APIs will have better support for dynamic context menus in the future.
 
 Commands are passed information about the browser context via `SHELLAC_*` environmental variables. The `$SHELLAC_ACTION` variable always specifies the name of the action that was selected. Other variables come from the Chrome browser context. In particular, take a look at:
 

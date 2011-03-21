@@ -8,35 +8,46 @@ var parent_menu;
 
 $(document).ready(function() {
 
+  // This js handles both:
+  //   * the background page context menu
+  //   * the popup page when the omnibar icon is clicked
+
   var uri = window.location.pathname;
 
   if (uri == '/background.html')
-    init_background();
+    init_background_page();
   else if (uri == '/popup.html')
-    init_popup();
+    init_popup_page();
 
 });
 
 
-function init_background()
+function init_background_page()
 {
-  parent_menu = chrome.contextMenus.create({
-    title: extension_name,
-    contexts: ['all']
-  });
+  // Ajax to get the shellac.json config data.
+  // Clear the current context menu for this extension,
+  // then rebuild the context menu from scratch.
 
   ajax('/config/', {}, {
     type: 'GET',
     dataType: 'json',
     success: function(data) {
-      setup(data);
+      chrome.contextMenus.removeAll( function() {
+        parent_menu = null;
+        refresh_menuitem = null;
+        actions = [];
+        setup_context_menu(data);
+      });
     }
   });
 }
 
 
-function init_popup()
+function init_popup_page()
 {
+  // Ajax to get the shellac.json config data.
+  // Display server status and list of commands in the popup page.
+
   $('#server').html(base_url);
   $('#server').attr('href',base_url);
 
@@ -63,15 +74,16 @@ function init_popup()
 }
 
 
-function setup(config)
+function setup_context_menu(config)
 {
-  var context_onclick = function(info, tab) {
-    var action = actions[info.menuItemId];
-    var data = { action: action.name };
-    $.each( info, function(k,v) { data["info."+k] = v; } );
-    $.each( tab, function(k,v) { data["tab."+k] = v; } );
-    ajax('/action/', data, { type:'POST' });
-  };
+  // Create the parent menu item.
+
+  parent_menu = chrome.contextMenus.create({
+    title: extension_name,
+    contexts: ['all']
+  });
+
+  // Create the shell commands.
 
   $.each( config.actions, function(i,action) {
     var child_menu = chrome.contextMenus.create({
@@ -82,10 +94,38 @@ function setup(config)
     });
     actions[child_menu] = action;
   });
+  
+  // Create a special menu item for refreshing the context menu itself.
+  // XXX kind of a hack, clean up when Chrome supports dynamic context menus
+
+  var separator = chrome.contextMenus.create({
+    type: 'separator',
+    parentId: parent_menu,
+    contexts: ['all']
+  });
+
+  var refresh_menuitem = chrome.contextMenus.create({
+    title: 'Refresh This List of Commands',
+    parentId: parent_menu,
+    contexts: ['all'],
+    onclick: function(info,tab) {
+      init_background_page();
+    }
+  });
 }
 
 
-function ajax(uri,data,opts)
+function context_onclick( info, tab )
+{
+  var action = actions[ info.menuItemId ];
+  var data = { action: action.name };
+  $.each( info, function(k,v) { data["info."+k] = v; } );
+  $.each( tab, function(k,v) { data["tab."+k] = v; } );
+  ajax('/action/', data, { type:'POST' });
+}
+
+
+function ajax( uri, data, opts )
 {
   if (uri == null)
     uri = '/';
