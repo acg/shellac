@@ -3,7 +3,10 @@
 import sys
 import os
 
-for k, v in os.environ.items():
-  if k.startswith('SHELLAC_'):
-    sys.stderr.write("%s=%s\n" % (k, v))
+env = os.environ
+keys = filter( lambda k: k.startswith('SHELLAC_'), env.keys() )
+keys.sort()
+
+for k in keys:
+  sys.stderr.write("%s=%s\n" % (k, env[k]))
 
