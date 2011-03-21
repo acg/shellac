@@ -2,9 +2,12 @@
 
 import sys
 import os
-import web
-import json
 import string
+import web
+try:
+  import simplejson as json
+except ImportError:
+  import json
 
 
 # Initialize the web app.
