@@ -6,12 +6,17 @@ Shellac is an extension for the [Google Chrome web browser](http://www.google.co
 
 With Shellac you can add actions to the browser context menu that invoke shell commands you define. The commands are passed information about the current page, like its url, its title, the currently selected block of text, etc.
 
-Some things Shellac might be used for:
+Shellac comes with some built-in commands:
 
-* Quickly email a link to the current page, a la Safari for the iPhone.
-* Open the current page's source in your editor.
+* Open the source to the current page in your `$EDITOR`.
+* Mail a link to the current page, a la Safari for iPhone.
+* Mail an image as an attachment.
+* Copy the current url + selected text to the X clipboard.
+
+It's easy to [add your own commands](#hacking). Some other ideas:
+
 * Bookmark the current page with a command line bookmarking program.
-* Highlight snippets of text and send them to a custom note-taking program.
+* Highlight snippets of text and send them to a note-taking program.
 
 Shellac is alpha and targeted at developers.
 
@@ -52,6 +57,7 @@ You should see a new icon appear to the right of the address bar. Click it to ge
 
 If you right click anywhere on a web page, on a link, or on selected text, you should see "Shellac" in the context menu. (Note that for security reasons, extensions can't modify the context menu on `chrome://*` or `file://*` pages.)
 
+<span name="hacking"></span>
 ## Writing Your Own Shell Command Actions ##
 
 Edit `etc/shellac.json` and add your custom action. The commands are executed under `/bin/sh -c`. Here's an example:
