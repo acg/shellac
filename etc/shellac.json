@@ -2,9 +2,15 @@
   "actions": [
     {
       "name": "edit_page",
-      "title": "Edit the source to this page",
+      "title": "Edit the Source to this Page",
       "command": "scripts/edit \"$SHELLAC_TAB_URL\"",
       "contexts": ["page"]
+    },
+    {
+      "name": "copy_link_and_selection",
+      "title": "Copy URL + Selection to X Clipboard",
+      "command": "scripts/copy_link_and_selection \"$SHELLAC_TAB_URL\" \"$SHELLAC_INFO_SELECTIONTEXT\"",
+      "contexts": ["selection"]
     },
     {
       "name": "mail_page_gnome",
@@ -14,7 +20,7 @@
     },
     {
       "name": "mail_page_thunderbird",
-      "title": "Mail this Page with thunderbird",
+      "title": "Mail this Page with Thunderbird",
       "command": "scripts/mail_thunderbird \"$SHELLAC_TAB_URL\" \"$SHELLAC_TAB_TITLE\"",
       "contexts": ["page"]
     },

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+link="$1"
+selection="$2"
+
+xclip -i <<EOF
+$link
+$selection
+EOF
+
+exit 0
+
