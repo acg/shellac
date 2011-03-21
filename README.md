@@ -43,7 +43,7 @@ To run the Shellac web app server, do this in a terminal:
 
 To install the Chrome extension:
 
-* Bring up the extensions management page by clicking the wrench icon and choosing Tools &gt; Extensions.
+* Bring up the extensions management page by clicking the wrench icon and choosing Tools &gt; Extensions. On a Mac, it's under "Window | Extensions".
 * If Developer mode has a + by it, click the + to add developer information to the page. The + changes to a -, and more buttons and information appear.
 * Click the Load unpacked extension button. A file dialog appears.
 * In the file dialog, navigate to the `shellac/extension` folder and click OK.
