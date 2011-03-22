@@ -8,7 +8,7 @@
     },
     {
       "name": "copy_link_and_selection",
-      "title": "Copy URL + Selection to X Clipboard",
+      "title": "Copy URL + Selection to Clipboard",
       "command": "scripts/copy_link_and_selection \"$SHELLAC_TAB_URL\" \"$SHELLAC_INFO_SELECTIONTEXT\"",
       "contexts": ["selection"]
     },
