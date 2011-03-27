@@ -24,6 +24,11 @@ $(document).ready(function() {
 
 function init_background_page()
 {
+  // Create a default context menu with the "refresh" menu item,
+  // in case the server is brought up *after* the extension is launched.
+
+  setup_context_menu(null);
+
   // Ajax to get the shellac.json config data.
   // Clear the current context menu for this extension,
   // then rebuild the context menu from scratch.
@@ -85,16 +90,19 @@ function setup_context_menu(config)
 
   // Create the shell commands.
 
-  $.each( config.actions, function(i,action) {
-    var child_menu = chrome.contextMenus.create({
-      title: action.title,
-      onclick: context_onclick,
-      parentId: parent_menu,
-      contexts: action.contexts
+  if (config != null)
+  {
+    $.each( config.actions, function(i,action) {
+      var child_menu = chrome.contextMenus.create({
+        title: action.title,
+        onclick: context_onclick,
+        parentId: parent_menu,
+        contexts: action.contexts
+      });
+      actions[child_menu] = action;
     });
-    actions[child_menu] = action;
-  });
-  
+  }
+
   // Create a special menu item for refreshing the context menu itself.
   // XXX kind of a hack, clean up when Chrome supports dynamic context menus
 
