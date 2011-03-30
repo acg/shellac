@@ -28,7 +28,12 @@ function init_background_page()
   // in case the server is brought up *after* the extension is launched.
 
   setup_context_menu(null);
+  populate_context_menu();
+}
 
+
+function populate_context_menu()
+{
   // Ajax to get the shellac.json config data.
   // Clear the current context menu for this extension,
   // then rebuild the context menu from scratch.
@@ -117,7 +122,7 @@ function setup_context_menu(config)
     parentId: parent_menu,
     contexts: ['all'],
     onclick: function(info,tab) {
-      init_background_page();
+      populate_context_menu();
     }
   });
 }
