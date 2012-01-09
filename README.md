@@ -39,7 +39,6 @@ Shellac is alpha and targeted at developers.
 Requirements:
 
 * [Python](http://python.org/) (&gt;= 2.5)
-* [web.py](http://webpy.org/)
 
 To run the Shellac web app server, do this in a terminal:
 
@@ -121,4 +120,8 @@ Shellac comes with a "Debugging: dump environment" action. You should see some o
 The Shellac web app listens on a localhost port, by default 8783. The set of available shell command actions are defined on the server side; no extra positional arguments are appended to the shell commands. Data is passed via `SHELLAC_*` environmental variables. If you pass variables as positional arguments to a shell command, be sure to use shell argument quoting.
 
 The current Chrome extension permissions model allows cross-**port** scripting requests: the Shellac javascript can send requests to any port on `127.0.0.1`. I didn't see any way to restrict this or I would have. If you need to convince yourself Shellac is well-behaved in this respect (it is!), the code is opensource and small...you know what to do...
+
+## Bugs ##
+
+* If the shell command doesn't exit cleanly, the web app doesn't process further commands?
 
