@@ -24,7 +24,7 @@ Shellac is alpha and targeted at developers.
 
 ### The popup shows status and registered commands ###
 
-![Shellac extension page](./extension-popup.png)
+![Shellac extension page](./screenshots/extension-popup.png)
 
 ### The link context menu ###
 
