@@ -1,4 +1,4 @@
-![icon](./shellac/raw/master/extension/icon-64x64.png)
+![icon](./extension/icon-64x64.png)
 
 # Shellac - extend Chrome with unix shell commands #
 
@@ -24,15 +24,15 @@ Shellac is alpha and targeted at developers.
 
 ### The popup shows status and registered commands ###
 
-![Shellac extension page](./shellac/raw/master/screenshots/extension-popup.png)
+![Shellac extension page](./extension-popup.png)
 
 ### The link context menu ###
 
-![Shellac link context menu](./shellac/raw/master/screenshots/mail-link.png)
+![Shellac link context menu](./screenshots/mail-link.png)
 
 ### The page context menu ###
 
-![Shellac page context menu](./shellac/raw/master/screenshots/page-menu.png)
+![Shellac page context menu](./screenshots/page-menu.png)
 
 ## Installation and Usage ##
 
