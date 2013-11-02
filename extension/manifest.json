@@ -1,11 +1,16 @@
 {
   "name": "Shellac",
-  "version": "0.2",
+  "version": "0.3",
+  "manifest_version": 2,
   "description": "Extend Chrome with unix shell commands.",
-  "background_page": "background.html",
+  "background" : {
+    "page" : "background.html",
+    "persistent" : true
+  },
   "browser_action": {
     "default_icon": "icon-64x64.png",
-    "popup": "popup.html"
+    "default_title": "Shellac",
+    "default_popup": "popup.html"
   },
   "permissions": [
     "contextMenus",
