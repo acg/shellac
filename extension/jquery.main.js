@@ -4,6 +4,8 @@ var extension_name = "Shellac";
 var base_url = "http://127.0.0.1:8783";
 var actions = {};
 var parent_menu;
+var DEBUG = 0;   // set to '1' to see console logging
+var logger = function() { if (DEBUG) console.log.apply(console,arguments); };
 
 
 $(document).ready(function() {
@@ -151,10 +153,10 @@ function ajax( uri, data, opts )
     data: data,
     dataType: 'html',
     success: function(data) {
-      console.log("HTTP success");
+      logger("ajax success");
     },
     error: function(xhr,textStatus) {
-      console.log("HTTP error.");
+      logger("ajax error:",xhr);
     }
   };
 
