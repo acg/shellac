@@ -56,7 +56,7 @@ You should see a new icon appear to the right of the address bar. Click it to ge
 
 If you right click anywhere on a web page, on a link, or on selected text, you should see "Shellac" in the context menu. (Note that for security reasons, extensions can't modify the context menu on `chrome://*` or `file://*` pages.)
 
-<span name="hacking"></span>
+<a name="hacking"></a>
 ## Writing Your Own Shell Command Actions ##
 
 Edit `etc/shellac.json` and add your custom action. The commands are executed under `/bin/sh -c`. Here's an example:
