@@ -115,6 +115,30 @@ Shellac comes with a "Debugging: dump environment" action. You should see some o
     SHELLAC_TAB_URL=http://code.google.com/chrome/extensions/tabs.html#type-Tab
     SHELLAC_TAB_WINDOWID=5
 
+## Binding Actions to Keyboard Shortcuts ##
+
+You can set up keyboard shortcuts in the `extension/manifest.json` file as per the [Chrome Commands API](https://developer.chrome.com/extensions/commands). If triggered command name matches the name of a configured action, the action will be triggered as well.
+
+For example, if you wanted to bind the "Edit the Source to this Page" action to the key combination `ctrl+shift+e`, you could first add this command to `extension/manifest.json`:
+
+```.json
+{  
+  "name": "Shellac",
+  "version": "0.3",
+  "manifest_version": 2,
+  ...
+  "commands": {
+    "edit_page": {
+    "description": "Edit the Source to this Page"
+    }
+  }
+}
+```
+
+Then, after visiting `chrome://extensions` and reloading Shellac, scroll to the bottom of the extensions page and click on "Keyboard shortcuts". Click on the text box in the Shellac section next to "Edit the Source to this Page", press your desired key combination (e.g., `ctrl+shift+e`), and click "OK". Since your new command shares the same name as the action (i.e., `edit_page`), the action will be triggered when you press `ctrl+shift+e`.
+
+*Caveat: due to limitations of the Chrome extension API, only the `["page"]` context is available to actions triggered by keyboard shortcuts.*
+
 ## Security ##
 
 The Shellac web app listens on a localhost port, by default 8783. The set of available shell command actions are defined on the server side; no extra positional arguments are appended to the shell commands. Data is passed via `SHELLAC_*` environmental variables. If you pass variables as positional arguments to a shell command, be sure to use shell argument quoting.
@@ -124,4 +148,3 @@ The current Chrome extension permissions model allows cross-**port** scripting r
 ## Bugs ##
 
 * If the shell command doesn't exit cleanly, the web app doesn't process further commands?
-
