@@ -49,6 +49,7 @@ function populate_context_menu()
         refresh_menuitem = null;
         actions = [];
         setup_context_menu(data);
+        setup_command_listener(data);
       });
     }
   });
@@ -130,13 +131,47 @@ function setup_context_menu(config)
 }
 
 
-function context_onclick( info, tab )
+// Listener for keyboard shortcuts, as defined in manifest.json (as "commands")
+
+function setup_command_listener(config)
 {
-  var action = actions[ info.menuItemId ];
-  var data = { action: action.name };
-  $.each( info, function(k,v) { data["info."+k] = v; } );
-  $.each( tab, function(k,v) { data["tab."+k] = v; } );
-  ajax('/action/', data, { type:'POST' });
+  chrome.commands.onCommand.addListener(function(command) {
+    // Match command name to action name
+    var action = $.grep(config.actions, function(a) {
+      return a.name == command;
+    })[0];
+    handle_command(action);
+  });
+}
+
+function handle_command(action)
+{
+  chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+    var data = {
+      action: action,
+      tab: tabs[0],
+      info: {}  // Unfortunately unavailable in this context
+    };
+    post_action(data);
+  });
+}
+
+function context_onclick(info, tab)
+{
+  var data = {
+    action: actions[ info.menuItemId ],
+    tab: tab,
+    info: info
+  };
+  post_action(data);
+}
+
+function post_action(data)
+{
+  var payload = { action: data.action.name };
+  $.each( data.info, function(k,v) { payload["info."+k] = v; } );
+  $.each( data.tab, function(k,v) { payload["tab."+k] = v; } );
+  ajax('/action/', payload, { type:'POST' });
 }
 
 
@@ -165,4 +200,3 @@ function ajax( uri, data, opts )
 
 
 })(jQuery);
-
